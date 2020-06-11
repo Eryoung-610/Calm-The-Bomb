@@ -1,17 +1,75 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Uncalm The Bomb</title>
+    <title>Calm The Bomb</title>
 
-    <link rel="stylesheet" href="style.css">
-    <script src = "script.js"></script>
+    <!-- CSS only -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css" type = "text/css">
+
+
+    <script src="script.js"></script>
 
 </head>
+
 <body>
-    
-    <div>Uncalm The Bomb</div>
+    <!-- Title -->
+    <div class="title">Calm The Bomb</div>
+
+    <!-- High Score -->
+    <div class="scoreBoard">
+        <div class="row highScore">
+            <div>High Score: </div>
+            <div id="hsValue">0</div>
+        </div>
+        <div class="row">
+            <div>Bombs Defused:</div>
+            <div id="csValue">0</div>
+        </div>
+    </div>
+
+
+    <!-- Game Grid -->
+    <div class="container">
+        <div id="gameGrid">
+            <div class="row">
+                <img id="bomb bomb1" src="/imgs/bomb1.png" style="width:200px;height:200px;">
+                <img id="bomb bomb2" src="/imgs/bomb1.png" style="width:200px;height:200px;">
+                <img id="bomb bomb3" src="/imgs/bomb1.png" style="width:200px;height:200px;">
+            </div>
+            <div class="row">
+                <img id="bomb bomb4" src="/imgs/bomb1.png" style="width:200px;height:200px;">
+                <img id="bomb bomb5" src="/imgs/bomb1.png" style="width:200px;height:200px;">
+                <img id="bomb bomb6" src="/imgs/bomb1.png" style="width:200px;height:200px;">
+            </div>
+            <div class="row">
+                <img id="bomb bomb7" src="/imgs/bomb1.png" style="width:200px;height:200px;">
+                <img id="bomb bomb8" src="/imgs/bomb1.png" style="width:200px;height:200px;">
+                <img id="bomb bomb9" src="/imgs/bomb1.png" style="width:200px;height:200px;">
+            </div>
+        </div>
+    </div>
+    </div>
+
+
+    <!-- Modes and Restart/Start -->
+    <div class="buttons">
+        <div class="row">
+            <!-- <p id = "easy">Easy</p>
+            <p id = "medium">Medium</p>
+            <p id = "hard">Hard</p> -->
+            <p id = "start">Start</p>
+        </div>
+
+    </div>
+
+
 
 </body>
+
 </html>

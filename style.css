@@ -1,0 +1,68 @@
+body {
+    background-image: url("https://images.pexels.com/photos/281260/pexels-photo-281260.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500");
+    background-size: cover;
+    color: white;
+    font-family: 'Permanent Marker', cursive;
+}
+
+/* BOTTOM BUTTONS */
+
+p {
+    /* border:2px solid white; */
+    height:50px;
+    margin:2em;
+}
+
+p:hover {
+    cursor:pointer;
+}
+
+.buttons {
+    padding-top:1em;
+    font-size:30px;
+}
+
+/* TITLE & SCOREBOARD */
+
+.title {
+    text-align:center;
+    margin-top: 3%;
+    font-size:60px;
+}
+
+.score {
+    text-align:center;
+    margin-top:5%;
+    font-size:48px;
+}
+
+.row {
+    display:flex;
+    justify-content: center;
+}
+
+.highScore {
+    font-size:48px;
+}
+
+.scoreBoard {
+    font-size:36px;
+    margin-top: 2%;
+}
+
+/* Game Grid of bombs */
+
+#gameGrid {
+    width:640px;
+    border:2px solid red;
+    margin: 0 auto;
+}
+
+img:hover {
+    cursor: pointer;
+}
+
+#bomb{
+    margin:10px;
+    border:2px solid red;
+}
