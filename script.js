@@ -7,6 +7,7 @@ document.addEventListener("DOMContentLoaded", function () {
     let medium = document.getElementById("medium");
     let hard = document.getElementById("hard");
     let start = document.getElementById("start");
+    let stopBtn = document.getElementById("stop");
     let bomb1 = document.getElementById("bomb bomb1");
     let bomb2 = document.getElementById("bomb bomb2");
     let bomb3 = document.getElementById("bomb bomb3");
@@ -24,11 +25,23 @@ document.addEventListener("DOMContentLoaded", function () {
     let gameOver = false;4
     const MAX = 2000;
     const MIN = 1000;
-    const bombs = [bomb1,bomb2,bomb3,bomb4,bomb5,bomb6,bomb7,bomb8,bomb9];
+    const bombs = [
+        bomb1,
+        bomb2,
+        bomb3,
+        bomb4,
+        bomb5,
+        bomb6,
+        bomb7,
+        bomb8,
+        bomb9];
+
+    let var1,var2;
 
     // Event Listeners
     start.addEventListener("click",init);
-    // gameGrid.addEventListener("click",test);
+    stopBtn.addEventListener("click",stop);
+
 
     // function test(e) {
     //     score++;
@@ -41,9 +54,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function init() {
         score = 0;
-        // console.log(bombs);
-        redBomb();
+        // console.log(bombs)
         randomBomb();
+        redBomb();
     }
 
     function timeFrame() {
@@ -54,22 +67,20 @@ document.addEventListener("DOMContentLoaded", function () {
         const index = Math.floor(Math.random() * 9);
 
         const bomb = bombs[index];
-        console.log(bomb);
         if (bomb === lastBomb) {
             return randomBomb();
         }
-
+        bomb.src = "/imgs/bomb2.png";
         lastBomb = bomb;
         return bomb;
-        
     }
 
     function redBomb() {
         // Time interval for red bomb
         const interval = timeFrame();
         // Retrieve the random bomb from randomBomb
-        const bomb = randomBomb();
-
+        // const bomb = randomBomb();
+        var1 = setInterval(randomBomb,500);
     }
 
     // function test(e){
@@ -77,6 +88,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
     //     e.target.src = "/imgs/bomb2.png";
     // }
+
+    function stop () {
+        clearInterval(var1);
+        
+        for (let i = 0; i < bombs.length; i++){
+            bombs[i].src = "/imgs/bomb1.png";
+        }
+    }
     
 })
 
