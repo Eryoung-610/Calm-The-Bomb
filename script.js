@@ -8,6 +8,9 @@ document.addEventListener("DOMContentLoaded", function () {
     let hard = document.getElementById("hard");
     let start = document.getElementById("start");
     let stopBtn = document.getElementById("stop");
+
+
+    // Query Selector here?
     let bomb1 = document.getElementById("bomb bomb1");
     let bomb2 = document.getElementById("bomb bomb2");
     let bomb3 = document.getElementById("bomb bomb3");
@@ -18,13 +21,16 @@ document.addEventListener("DOMContentLoaded", function () {
     let bomb8 = document.getElementById("bomb bomb8");
     let bomb9 = document.getElementById("bomb bomb9");
 
+
     // Game Logic Variables
     let score = 0;
     let highScoreValue = 0;
     let lastBomb;
-    let gameOver = false;4
+    let gameOver = false;
     const MAX = 2000;
     const MIN = 1000;
+
+    // Not sure how to refactor
     const bombs = [
         bomb1,
         bomb2,
@@ -34,69 +40,115 @@ document.addEventListener("DOMContentLoaded", function () {
         bomb6,
         bomb7,
         bomb8,
-        bomb9];
-
-    let var1,var2;
+        bomb9
+    ];
 
     // Event Listeners
-    start.addEventListener("click",init);
-    stopBtn.addEventListener("click",stop);
+    start.addEventListener("click", init);
+    gameGrid.addEventListener("click",tap);
+    stopBtn.addEventListener("click", stop);
 
+    let gameDuration = setTimeout(() => gameOver = true,10000);
 
-    // function test(e) {
-    //     score++;
-    //     if (score > highScoreValue) {
-    //         highScore.innerText = score;
-    //     }
-    //     console.log(e.target.id);
-    //     currentScore.innerText = score;
-    // }
-
+    // Functions
     function init() {
+        gameOver = false;
         score = 0;
-        // console.log(bombs)
-        randomBomb();
-        redBomb();
+        redBomb(); 
+
+        // Game runs for 30 seconds
+        gameDuration;
+
+        if(gameOver = true){
+            clearTimeout(gameDuration)
+        }
+
     }
 
+
+    //Time frame for bombs to blow up
     function timeFrame() {
-        return Math.round(Math.random() * (MAX-MIN) + MIN)
+        return Math.round(Math.random() * (MAX - MIN) + MIN)
     }
 
-    function randomBomb(){
-        const index = Math.floor(Math.random() * 9);
 
+    // Function to randomly select a bomb.
+    function randomBomb() {
+        // Random index num for random bomb
+        const index = Math.floor(Math.random() * bombs.length);
+        // Selects random bomb
         const bomb = bombs[index];
+        // Ensure that last bomb isn't chosen again
         if (bomb === lastBomb) {
             return randomBomb();
         }
-        bomb.src = "/imgs/bomb2.png";
         lastBomb = bomb;
         return bomb;
     }
+    
 
+    // Changes to red bomb
     function redBomb() {
+        // Pop sound
+        // pop();
         // Time interval for red bomb
         const interval = timeFrame();
         // Retrieve the random bomb from randomBomb
-        // const bomb = randomBomb();
-        var1 = setInterval(randomBomb,500);
+        const randBomb = randomBomb();
+
+        //Change random bomb source to red bomb
+        randBomb.src = "imgs/bomb2.png";
+
+        setTimeout(() => {
+            randBomb.src = "imgs/boom.png";
+            // explosion();
+            if (!gameOver) {
+                redBomb();
+            } else {
+                gameOver = true;
+            }
+        }, interval);
+
+        // console.log(randBomb.id);
+
+        // if(randBomb.src === "imgs/bomb2.png" && isClicked)
+
     }
 
-    // function test(e){
-    //     console.log(e.target.id)
 
-    //     e.target.src = "/imgs/bomb2.png";
-    // }
+    function stop() {
+        score = 0;
+        currentScore.innerText = score;
+        clearTimeout(gameDuration);
 
-    function stop () {
-        clearInterval(var1);
-        
-        for (let i = 0; i < bombs.length; i++){
-            bombs[i].src = "/imgs/bomb1.png";
+        console.log(gameDuration);
+
+        // Resets all bombs to black
+        for (let i = 0; i < bombs.length; i++) {
+            bombs[i].src = "imgs/bomb1.png";
         }
     }
-    
+
+    function pop() {
+        document.getElementById("pop").play();
+    }
+
+    function explosion(){
+        document.getElementById("explosion").play();
+    }
+
+    function tap(e){
+
+
+        // if(randBomb.src === "imgs/bomb2.png"){
+        //     console.log("clicked");
+        // }
+        // score++;
+        // currentScore.innerText = score;
+
+        // if(score > highScoreValue){
+        //     highScore.innerText = score;
+        // }
+    }
+
 })
-
-
