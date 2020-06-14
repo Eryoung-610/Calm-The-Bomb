@@ -145,8 +145,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
         if(e.target.src === "http://127.0.0.1:5500/imgs/bomb2.png"){
             e.target.src = "http://127.0.0.1:5500/imgs/bomb1.png"
-        } else {
-            console.log("THIS SHIT DIDN'T WORK");
+
+            score++;
+            currentScore.innerText = score;
+        }
+
+        if(score > highScoreValue) {
+            highScore.innerText = score;
         }
 
         // if(randBomb.src === "imgs/bomb2.png"){
