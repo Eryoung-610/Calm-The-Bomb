@@ -25,10 +25,11 @@ document.addEventListener("DOMContentLoaded", function () {
     // Game Logic Variables
     let score = 0;
     let highScoreValue = 0;
+    let gameActive = false;
     let lastBomb;
     let gameOver = false;
-    const MAX = 2000;
-    const MIN = 1000;
+    const MAX = 2500;
+    const MIN = 1500;
 
     // Not sure how to refactor
     const bombs = [
@@ -44,8 +45,8 @@ document.addEventListener("DOMContentLoaded", function () {
     ];
 
     // Event Listeners
+    bomb1.addEventListener("click",tap);
     start.addEventListener("click", init);
-    gameGrid.addEventListener("click",tap);
     stopBtn.addEventListener("click", stop);
 
     let gameDuration = setTimeout(() => gameOver = true,10000);
@@ -54,7 +55,11 @@ document.addEventListener("DOMContentLoaded", function () {
     function init() {
         gameOver = false;
         score = 0;
-        redBomb(); 
+
+        if(gameActive = true){
+            redBomb();
+        }
+         
 
         // Game runs for 30 seconds
         gameDuration;
@@ -90,7 +95,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // Changes to red bomb
     function redBomb() {
         // Pop sound
-        // pop();
+        pop();
         // Time interval for red bomb
         const interval = timeFrame();
         // Retrieve the random bomb from randomBomb
@@ -99,8 +104,10 @@ document.addEventListener("DOMContentLoaded", function () {
         //Change random bomb source to red bomb
         randBomb.src = "imgs/bomb2.png";
 
+        // Sets the random bomb to explosion after interval is over.
+        // If game is not over, keep calling redBomb.
         setTimeout(() => {
-            randBomb.src = "imgs/boom.png";
+            // randBomb.src = "imgs/boom.png";
             // explosion();
             if (!gameOver) {
                 redBomb();
@@ -108,20 +115,17 @@ document.addEventListener("DOMContentLoaded", function () {
                 gameOver = true;
             }
         }, interval);
-
-        // console.log(randBomb.id);
-
-        // if(randBomb.src === "imgs/bomb2.png" && isClicked)
-
     }
 
 
     function stop() {
         score = 0;
+        // Reset score to 0
         currentScore.innerText = score;
+
+        // Stops the game interval
         clearTimeout(gameDuration);
 
-        console.log(gameDuration);
 
         // Resets all bombs to black
         for (let i = 0; i < bombs.length; i++) {
@@ -139,6 +143,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function tap(e){
 
+        if(e.target.src === "http://127.0.0.1:5500/imgs/bomb2.png"){
+            e.target.src = "http://127.0.0.1:5500/imgs/bomb1.png"
+        } else {
+            console.log("THIS SHIT DIDN'T WORK");
+        }
 
         // if(randBomb.src === "imgs/bomb2.png"){
         //     console.log("clicked");
