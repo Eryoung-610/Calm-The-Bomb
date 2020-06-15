@@ -2,9 +2,9 @@ document.addEventListener("DOMContentLoaded", function () {
     // DOM REFS
     let currentScore = document.getElementById("csValue");
     let highScore = document.getElementById("hsValue");
-    let easy = document.getElementById("easy");
-    let medium = document.getElementById("medium");
-    let hard = document.getElementById("hard");
+    let easyBtn = document.getElementById("easy");
+    let mediumBtn = document.getElementById("medium");
+    let hardBtn = document.getElementById("hard");
     let start = document.getElementById("start");
     let resetBtn = document.getElementById("reset");
 
@@ -26,8 +26,8 @@ document.addEventListener("DOMContentLoaded", function () {
     let highScoreValue = 0;
     let lastBomb;
     let gameOver = false;
-    const MAX = 1000;
-    const MIN = 750;
+    let MAX = 1500;
+    let MIN = 1000;
 
     // Not sure how to refactor
     const bombs = [
@@ -43,20 +43,23 @@ document.addEventListener("DOMContentLoaded", function () {
     ];
 
     // Event Listeners
-    bomb1.addEventListener("click",tap);
-    bomb2.addEventListener("click",tap);
-    bomb3.addEventListener("click",tap);
-    bomb4.addEventListener("click",tap);
-    bomb5.addEventListener("click",tap);
-    bomb6.addEventListener("click",tap);
-    bomb7.addEventListener("click",tap);
-    bomb8.addEventListener("click",tap);
-    bomb9.addEventListener("click",tap);
+    bomb1.addEventListener("click", tap);
+    bomb2.addEventListener("click", tap);
+    bomb3.addEventListener("click", tap);
+    bomb4.addEventListener("click", tap);
+    bomb5.addEventListener("click", tap);
+    bomb6.addEventListener("click", tap);
+    bomb7.addEventListener("click", tap);
+    bomb8.addEventListener("click", tap);
+    bomb9.addEventListener("click", tap);
     start.addEventListener("click", init);
     resetBtn.addEventListener("click", reset);
+    easyBtn.addEventListener("click", easy);
+    mediumBtn.addEventListener("click",medium);
+    hardBtn.addEventListener("click",hard);
 
     // Game Duration time
-    let gameDuration = setTimeout(() => gameOver = true,60000);
+    let gameDuration = setTimeout(() => gameOver = true, 60000);
 
     let bombTimeout;
 
@@ -75,7 +78,7 @@ document.addEventListener("DOMContentLoaded", function () {
         gameDuration;
 
         //If gameOver, clear the game
-        if(gameOver = true){
+        if (gameOver = true) {
             clearTimeout(gameDuration)
         }
 
@@ -101,7 +104,7 @@ document.addEventListener("DOMContentLoaded", function () {
         lastBomb = bomb;
         return bomb;
     }
-    
+
 
     // Changes to red bomb
     function redBomb() {
@@ -117,7 +120,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         // Sets the random bomb to explosion after interval is over.
         // If game is not over, keep calling redBomb.
-       bombTimeout = setTimeout(() => {
+        bombTimeout = setTimeout(() => {
             randBomb.src = "imgs/boom.png";
             explosion();
             if (!gameOver) {
@@ -150,36 +153,69 @@ document.addEventListener("DOMContentLoaded", function () {
         document.getElementById("pop").play();
     }
 
-    function explosion(){
+    function explosion() {
         document.getElementById("explosion").play();
     }
 
-    function tap(e){
+    function tap(e) {
 
-        if(e.target.src === "https://eryoung-610.github.io/Calm-The-Bomb/imgs/bomb2.png"){
+        if (e.target.src === "https://eryoung-610.github.io/Calm-The-Bomb/imgs/bomb2.png") {
             e.target.src = "https://eryoung-610.github.io/Calm-The-Bomb/imgs/bomb1.png"
-            
+
             clearTimeout(bombTimeout);
             redBomb();
             score++;
             currentScore.innerText = score;
         }
 
-        if(e.target.src === "file:///C:/Users/Young/Desktop/seir_526/Projects/Uncalm-The-Bomb/imgs/bomb2.png"){
+        if (e.target.src === "file:///C:/Users/Young/Desktop/seir_526/Projects/Uncalm-The-Bomb/imgs/bomb2.png") {
             e.target.src = "imgs/bomb1.png"
 
             clearTimeout(bombTimeout);
             redBomb();
             score++;
             currentScore.innerText = score;
-        } else {
-            console.log("NOT DETECTED")
         }
 
-        if(score > highScoreValue) {
-            score = highScoreValue;
-            highScore.innerText = highScoreValue;
+        // Need to fix
+        if (score > highScoreValue) {
+
+            highScore.innerText = score;
         }
+    }
+
+    function easy() {
+        MAX = 2000;
+        MIN = 1500;
+
+        easyBtn.style.border = "5px solid white";
+        easyBtn.style.borderRadius = "5px";
+
+        mediumBtn.style.border = "none";
+        hardBtn.style.border = "none";
+    }
+
+    function medium(){
+        MAX = 1500;
+        MIN = 1000;
+
+        mediumBtn.style.border = "5px solid white";
+        mediumBtn.style.borderRadius = "5px";
+
+        easyBtn.style.border = "none";
+        hardBtn.style.border = "none";
+    }
+
+    function hard(){
+        MAX = 500;
+        MIN = 450;
+
+        hardBtn.style.border = "5px solid white";
+        hardBtn.style.borderRadius = "5px";
+
+        easyBtn.style.border = "none";
+        mediumBtn.style.border = "none";
+
     }
 
 })

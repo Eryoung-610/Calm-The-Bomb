@@ -8,9 +8,10 @@ body {
 /* BOTTOM BUTTONS */
 
 p {
-    /* border:2px solid white; */
+    text-align: center;
     height:50px;
     margin:2em;
+    width:100px;
 }
 
 p:hover {
@@ -22,7 +23,17 @@ p:hover {
     font-size:30px;
 }
 
+#medium {
+    width:150px;
+    border: 5px solid white;
+    border-radius: 5px;
+}
+
 /* TITLE & SCOREBOARD */
+
+.title, .scoreBoard {
+    cursor: default;
+}
 
 .title {
     text-align:center;
