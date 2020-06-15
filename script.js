@@ -156,8 +156,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function tap(e){
 
-        if(e.target.src === "http://127.0.0.1:5500/imgs/bomb2.png"){
-            e.target.src = "http://127.0.0.1:5500/imgs/bomb1.png"
+        if(e.target.src === "https://eryoung-610.github.io/Calm-The-Bomb/imgs/bomb2.png"){
+            e.target.src = "https://eryoung-610.github.io/Calm-The-Bomb/imgs/bomb1.png"
             
             clearTimeout(bombTimeout);
             redBomb();
