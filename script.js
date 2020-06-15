@@ -1,3 +1,11 @@
+    // Game Logic Variables
+    let score = 0;
+    let highScoreValue = 0;
+    let lastBomb;
+    let gameOver = false;
+    let MAX = 1500;
+    let MIN = 1000;
+
 document.addEventListener("DOMContentLoaded", function () {
     // DOM REFS
     let currentScore = document.getElementById("csValue");
@@ -19,15 +27,6 @@ document.addEventListener("DOMContentLoaded", function () {
     let bomb7 = document.getElementById("bomb bomb7");
     let bomb8 = document.getElementById("bomb bomb8");
     let bomb9 = document.getElementById("bomb bomb9");
-
-
-    // Game Logic Variables
-    let score = 0;
-    let highScoreValue = 0;
-    let lastBomb;
-    let gameOver = false;
-    let MAX = 1500;
-    let MIN = 1000;
 
     // Not sure how to refactor
     const bombs = [
@@ -72,9 +71,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         gameOver = false;
         score = 0;
-
         redBomb();
-
         gameDuration;
 
         //If gameOver, clear the game
@@ -177,10 +174,9 @@ document.addEventListener("DOMContentLoaded", function () {
             currentScore.innerText = score;
         }
 
-        // Need to fix
         if (score > highScoreValue) {
-
-            highScore.innerText = score;
+            highScoreValue = score;
+            highScore.innerText = highScoreValue;
         }
     }
 
