@@ -1,13 +1,12 @@
 document.addEventListener("DOMContentLoaded", function () {
     // DOM REFS
-    let gameGrid = document.getElementById("gameGrid");
     let currentScore = document.getElementById("csValue");
     let highScore = document.getElementById("hsValue");
     let easy = document.getElementById("easy");
     let medium = document.getElementById("medium");
     let hard = document.getElementById("hard");
     let start = document.getElementById("start");
-    let stopBtn = document.getElementById("stop");
+    let resetBtn = document.getElementById("reset");
 
 
     // Query Selector here?
@@ -25,11 +24,10 @@ document.addEventListener("DOMContentLoaded", function () {
     // Game Logic Variables
     let score = 0;
     let highScoreValue = 0;
-    let gameActive = false;
     let lastBomb;
     let gameOver = false;
-    const MAX = 750;
-    const MIN = 500;
+    const MAX = 1000;
+    const MIN = 750;
 
     // Not sure how to refactor
     const bombs = [
@@ -55,24 +53,28 @@ document.addEventListener("DOMContentLoaded", function () {
     bomb8.addEventListener("click",tap);
     bomb9.addEventListener("click",tap);
     start.addEventListener("click", init);
-    stopBtn.addEventListener("click", stop);
+    resetBtn.addEventListener("click", reset);
 
-    let gameDuration = setTimeout(() => gameOver = true,1000);
+    // Game Duration time
+    let gameDuration = setTimeout(() => gameOver = true,60000);
 
-    let var1;
+    let bombTimeout;
 
     // Functions
     function init() {
+        // Resets all bombs to black
+        for (let i = 0; i < bombs.length; i++) {
+            bombs[i].src = "imgs/bomb1.png";
+        }
+
         gameOver = false;
         score = 0;
 
-            redBomb();
-        
-         
+        redBomb();
 
-        // Game runs for 30 seconds
         gameDuration;
 
+        //If gameOver, clear the game
         if(gameOver = true){
             clearTimeout(gameDuration)
         }
@@ -115,7 +117,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         // Sets the random bomb to explosion after interval is over.
         // If game is not over, keep calling redBomb.
-       var1 = setTimeout(() => {
+       bombTimeout = setTimeout(() => {
             randBomb.src = "imgs/boom.png";
             explosion();
             if (!gameOver) {
@@ -125,20 +127,17 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         }, interval);
 
-        // if (randBomb.src = "imgs/explosion.png"){
-        //     gameOver = true;
-        // }
     }
 
 
-    function stop() {
+    function reset() {
         score = 0;
         // Reset score to 0
         currentScore.innerText = score;
 
         // Stops the game interval
         clearTimeout(gameDuration);
-        clearTimeout(var1);
+        clearTimeout(bombTimeout);
 
 
         // Resets all bombs to black
@@ -160,33 +159,27 @@ document.addEventListener("DOMContentLoaded", function () {
         if(e.target.src === "http://127.0.0.1:5500/imgs/bomb2.png"){
             e.target.src = "http://127.0.0.1:5500/imgs/bomb1.png"
             
-            clearTimeout(var1);
+            clearTimeout(bombTimeout);
             redBomb();
             score++;
             currentScore.innerText = score;
         }
 
-        if(e.target.src === "imgs/bomb2.png"){
+        if(e.target.src === "file:///C:/Users/Young/Desktop/seir_526/Projects/Uncalm-The-Bomb/imgs/bomb2.png"){
             e.target.src = "imgs/bomb1.png"
 
-            clearTimeout(var1);
+            clearTimeout(bombTimeout);
+            redBomb();
             score++;
             currentScore.innerText = score;
-        } 
-
-        if(score > highScoreValue) {
-            highScore.innerText = score;
+        } else {
+            console.log("NOT DETECTED")
         }
 
-        // if(randBomb.src === "imgs/bomb2.png"){
-        //     console.log("clicked");
-        // }
-        // score++;
-        // currentScore.innerText = score;
-
-        // if(score > highScoreValue){
-        //     highScore.innerText = score;
-        // }
+        if(score > highScoreValue) {
+            score = highScoreValue;
+            highScore.innerText = highScoreValue;
+        }
     }
 
 })
