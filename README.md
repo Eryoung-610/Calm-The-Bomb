@@ -1,5 +1,5 @@
 # Calm-The-Bomb
-https://eryoung-610.github.io/Calm-The-Bomb/
+Live demo : https://eryoung-610.github.io/Calm-The-Bomb/
 
 ## Setting up project
 • Clone or download
@@ -25,7 +25,8 @@ With a 3x3 grid of bombs, your goal is to defuse randomly ignited bombs otherwis
 * Create game board (HTML/CSS)
   * 3x3 board on load
   * Initialize bombs on load
-  * Start button to begin/Turns into restart button after
+  * Start button to begin
+  * Reset to clear board
 * Create randomizer for bombs
 * Create interval to change image of bomb
 * Create image detection to defuse bombs
